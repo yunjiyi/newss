@@ -38,14 +38,13 @@
     gtag('config', 'G-EL9HHYE5LC');
   </script>
 -->
-<script>
-	if (import.meta.env.VITE_ENABLE_LOGIN === "true") {
-  // 仅在登录功能启用时，显示登录提示
-  showLoginPrompt();
-}
-		</script>
-	
-<script>
+<script type="module">
+  if (import.meta.env.VITE_ENABLE_LOGIN === "true") {
+    // 仅在登录功能启用时，显示登录提示
+    showLoginPrompt();
+  }
+
+
     function safeParseString(str) {
         try {
             return JSON.parse(str);
