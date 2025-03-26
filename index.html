@@ -3,43 +3,33 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+  <!--<link rel="icon" type="image/svg+xml" href="/icon.svg" />-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- SEO Meta Tags -->
   <meta name="description" content="NewsNow - 实时新闻聚合阅读器，汇集全球热点新闻，提供优雅的阅读体验" />
-  <meta name="keywords" content="新闻,科技新闻,实时新闻,新闻聚合,NewsNow" />
-  <meta name="author" content="NewsNow" />
+  <meta name="keywords" content="新闻,科技新闻,实时新闻,新闻聚合" />
+ <!--<meta name="author" content="NewsNow" />-->
   <meta name="robots" content="index, follow" />
 
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="NewsNow - 优雅的新闻聚合阅读器" />
   <meta property="og:description" content="实时新闻聚合阅读器，汇集全球热点新闻，提供优雅的阅读体验" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://newsnow.busiyi.world" />
-  <meta property="og:image" content="https://newsnow.busiyi.world/og-image.png" />
+  <!--<meta property="og:url" content="https://newsnow.busiyi.world" />-->
+  <!--<meta property="og:image" content="https://newsnow.busiyi.world/og-image.png" />-->
 
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="NewsNow - 优雅的新闻聚合阅读器" />
   <meta name="twitter:description" content="实时新闻聚合阅读器，汇集全球热点新闻，提供优雅的阅读体验" />
-  <meta name="twitter:image" content="https://newsnow.busiyi.world/og-image.svg" />
+  <!--<meta name="twitter:image" content="https://newsnow.busiyi.world/og-image.svg" />-->
 
   <meta name="theme-color" content="#F14D42" />
   <link rel="preload" href="/Baloo2-Bold.subset.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
-
-  <!-- Schema.org markup for Google -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "NewsNow",
-      "url": "https://newsnow.busiyi.world",
-      "description": "实时新闻聚合阅读器，汇集全球热点新闻，提供优雅的阅读体验",
-    }
-  </script>
+  <!--<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />-->
 
   <!-- Google Analytics -->
+  <!--
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EL9HHYE5LC"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -47,34 +37,138 @@
     gtag('js', new Date());
     gtag('config', 'G-EL9HHYE5LC');
   </script>
+-->
 
-  <script>
+	
+<script>
     function safeParseString(str) {
-      try {
-        return JSON.parse(str)
-      } catch {
-        return ""
-      }
+        try {
+            return JSON.parse(str);
+        } catch {
+            return "";
+        }
     }
-    const theme = safeParseString(localStorage.getItem("color-scheme")) || "dark"
-    const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches
-    if (theme !== "light") {
-      document.documentElement.classList.add("dark")
+    
+    // 默认优先设置为暗黑模式
+    const theme = safeParseString(localStorage.getItem("color-scheme")) || "dark";
+    if (theme === "dark" || theme === "") {
+        // 如果本地存储没有主题或者主题为暗黑模式，则添加暗黑类
+        document.documentElement.classList.add("dark");
     }
 
-    const query = new URLSearchParams(window.location.search)
+    const query = new URLSearchParams(window.location.search);
     if (query.has("login") && query.has("user") && query.has("jwt")) {
-      localStorage.setItem("user", query.get("user"))
-      localStorage.setItem("jwt", JSON.stringify(query.get("jwt")))
-      window.history.replaceState({}, document.title, window.location.pathname)
+        localStorage.setItem("user", query.get("user"));
+        localStorage.setItem("jwt", JSON.stringify(query.get("jwt")));
+        window.history.replaceState({}, document.title, window.location.pathname);
     }
-  </script>
+</script>
+
   <title>NewsNow</title>
+  <style>
+[data-overlayscrollbars-viewport]:not([data-overlayscrollbars]),
+.dark body,
+.px-4 {
+    background: #181d23 !important;
+}
+
+.transition-opacity-300,
+.dark [cmdk-dialog],
+[cmdk-dialog] {
+    background: linear-gradient(160deg, #000000 20%, #20272f 29%, #000000 39%, #2a333b 69%, #010202 98%) !important;
+}
+
+.dark .bg-base {
+    background: linear-gradient(160deg, #12171a 20%, #20272f 29%, #0c1012 39%, #212931 69%, #000000 98%) !important;
+}
+
+.text-lg {
+    font-size: 1.525rem;
+    color: #ffffff !important;
+    background: transparent !important;
+}
+.op-80 {
+    opacity: .8;
+    color: #fff !important;
+}
+
+.transition-opacity-300 {
+    width: auto; 
+}
+
+@media (min-width: 396px) {
+    .transition-opacity-300 {
+        width: auto; 
+    }
+}
+
+@media (max-width: 395px) {
+    .transition-opacity-300 {
+        width: 90%; 
+    }
+}
+
+span.mr-2.text-base:hover,
+.rounded-md:hover,
+.text-base:hover,
+.px-1:hover {
+    color: #ff6000 !important;
+    background-color: #000000 !important;
+}
+
+.mr-2 {
+    color: #bbbbbb;
+}
+
+.shadow-primary\/20 {
+    --un-shadow-color: none !important;
+}
+
+.color-primary {
+    color: #ff6000 !important;
+}
+
+.backdrop-blur-md,
+.flex.justify-center.md\:hidden.mb-6,
+button.btn.i-ph\:star-duotone,
+.transition-shadow-500,
+.shadow-primary\/20,
+.shadow,
+.p-3,
+.bg-primary\/1,
+.font-mono,
+.text-neutral-500,
+.py-6 {
+    display: none !important;
+}
+
+@media (min-width: 1024px) {
+    .lg\:py-6 {
+    display: none !important;
+}
+
+@media screen and (max-width: 767px) {
+    .main-content.page {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.os-scrollbar-vertical .os-scrollbar-handle {
+	   width: 5px !important;
+}
+
+.os-scrollbar-vertical .os-scrollbar-handle:hover {
+    background-color: #ff6000; 
+}
+  </style>
+	
 </head>
 
 <body>
   <div id="app"></div>
   <script type="module" src="/src/main.tsx"></script>
+
 </body>
 
 </html>
